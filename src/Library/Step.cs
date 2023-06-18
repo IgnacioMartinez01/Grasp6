@@ -32,6 +32,7 @@ namespace Full_GRASP_And_SOLID
         }
 
         // Agregado por SRP
+        
         public override string GetTextToPrint()
         {
             return $"{this.Quantity} de '{this.Input.Description}' " +

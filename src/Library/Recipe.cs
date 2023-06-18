@@ -3,18 +3,40 @@
 // Copyright (c) Programación II. Derechos reservados.
 // </copyright>
 //-------------------------------------------------------------------------
-
 using System;
 using System.Collections.Generic;
-
+using System.Threading;
 namespace Full_GRASP_And_SOLID
+
 {
     public class Recipe : IRecipeContent // Modificado por DIP
     {
         // Cambiado por OCP
         private IList<BaseStep> steps = new List<BaseStep>();
 
+        private bool Cooking {get ; set ;}
         public Product FinalProduct { get; set; }
+        public bool Cooked = false;
+        public void Cook()
+        {
+            bool Cooked=true;
+            int GetCook=GetCookTime();
+        }
+
+
+
+
+
+        public int GetCookTime()
+        {
+            int totalTime = 0;
+            foreach(BaseStep step in steps )
+            {
+                totalTime =+step.Time;
+            }
+            return totalTime;
+        }
+        
 
         // Agregado por Creator
         public void AddStep(Product input, double quantity, Equipment equipment, int time)
@@ -24,6 +46,7 @@ namespace Full_GRASP_And_SOLID
         }
 
         // Agregado por OCP y Creator
+
         public void AddStep(string description, int time)
         {
             WaitStep step = new WaitStep(description, time);
